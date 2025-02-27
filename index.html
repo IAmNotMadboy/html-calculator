@@ -162,6 +162,8 @@
         let expression = document.getElementById("display").value;
         expression = expression.replace(/×/g, '*').replace(/÷/g, '/');
 
+        expression = expression.replace(/(\d+)%/g, '($1/100)');
+
         expression = expression.replace(/\b0+(\d)/g, '$1');
 
         document.getElementById("display").value = eval(expression);
