@@ -20,17 +20,17 @@
             position: relative;
         }
 
+        /* Starry Background */
         body::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
-            width: 300%;
-            height: 300%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png');
-            background-size: contain;
+            width: 200%;
+            height: 200%;
+            background: url('https://source.unsplash.com/1600x900/?stars,galaxy,space') no-repeat center center/cover;
             animation: moveStars 60s linear infinite;
-            opacity: 0.3;
+            opacity: 0.5;
             z-index: -1;
         }
 
