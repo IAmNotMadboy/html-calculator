@@ -21,22 +21,28 @@
         }
 
         /* Starry Background */
-        body::before {
-            content: "";
+        .stars {
             position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
             top: 0;
             left: 0;
-            width: 200%;
-            height: 200%;
-            background: url('https://source.unsplash.com/1600x900/?stars,galaxy,space') no-repeat center center/cover;
-            animation: moveStars 60s linear infinite;
-            opacity: 0.5;
-            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            width: 2px;
+            height: 2px;
+            opacity: 0.8;
+            animation: moveStars linear infinite;
         }
 
         @keyframes moveStars {
-            from { transform: translateY(0) translateX(0); }
-            to { transform: translateY(-50%) translateX(-50%); }
+            from { transform: translateY(0); }
+            to { transform: translateY(100vh); }
         }
 
         #calculator {
@@ -107,6 +113,8 @@
     </style>
 </head>
 <body>
+    <div class="stars"></div>
+
     <div id="calculator">
         <textarea id="display" readonly></textarea>
         <br>
@@ -151,6 +159,25 @@
                 document.getElementById("display").value = "Error";
             }
         }
+
+        // Generate stars dynamically
+        function createStars() {
+            const starsContainer = document.querySelector(".stars");
+            for (let i = 0; i < 100; i++) {
+                let star = document.createElement("div");
+                star.classList.add("star");
+                let size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        createStars();
     </script>
 </body>
 </html>
