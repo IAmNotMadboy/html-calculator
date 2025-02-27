@@ -162,8 +162,12 @@
         let expression = document.getElementById("display").value;
         expression = expression.replace(/×/g, '*').replace(/÷/g, '/');
 
-        expression = expression.replace(/(\d+)(\s*[-+*/]\s*)(\d+)%/g, (match, num1, operator, num2) => {
+        expression = expression.replace(/(\d+)(\s*[-+]\s*)(\d+)%/g, (match, num1, operator, num2) => {
             return `${num1} ${operator} (${num1} * ${num2} / 100)`;
+        });
+
+        expression = expression.replace(/(\d+)(\s*[*/]\s*)(\d+)%/g, (match, num1, operator, num2) => {
+            return `${num1} ${operator} (${num2} / 100)`;
         });
 
         expression = expression.replace(/\b0+(\d)/g, '$1');
@@ -173,7 +177,6 @@
         document.getElementById("display").value = "Error";
     }
 }
-
 
         function createStars() {
             const starsContainer = document.querySelector(".stars");
