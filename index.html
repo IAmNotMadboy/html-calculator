@@ -158,14 +158,17 @@
         }
 
         function calculateResult() {
-            try {
-                let expression = document.getElementById("display").value;
-                expression = expression.replace(/×/g, '*').replace(/÷/g, '/');
-                document.getElementById("display").value = eval(expression);
-            } catch {
-                document.getElementById("display").value = "Error";
-            }
-        }
+    try {
+        let expression = document.getElementById("display").value;
+        expression = expression.replace(/×/g, '*').replace(/÷/g, '/');
+
+        expression = expression.replace(/\b0+(\d)/g, '$1');
+
+        document.getElementById("display").value = eval(expression);
+    } catch {
+        document.getElementById("display").value = "Error";
+    }
+}
 
         function createStars() {
             const starsContainer = document.querySelector(".stars");
